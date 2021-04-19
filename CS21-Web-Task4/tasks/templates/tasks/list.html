@@ -1,0 +1,72 @@
+<style>
+	body{
+		background-color: black;
+	}
+
+	input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: black;
+	}
+
+	.submit{
+		background-color: blue;
+		text-decoration:none;
+	}
+
+	.center-column{
+		width:100%%;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		color: black;
+		background-color: black;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 5px;
+		font-size: 25px;
+	}
+
+	.btn-danger{
+		color:red;
+		{% comment %} background-color: white; {% endcomment %}
+		text-decoration:none;
+	}
+
+</style>
+
+<div class="center-column">
+
+	<form method="POST" action="/">
+		{% csrf_token %}
+		{{form.title}}
+		<input class="btn btn-info" type="submit" name="Create Task">
+	</form>
+
+	<div class="todo-list">
+
+	{% for task in tasks %}
+		<div class="item-row" >
+			<span style="background-color:white;">{{task}}</span>
+			<br/>
+			<a  style="text-decoration:none; color:yellow;"class="btn btn-sm btn-info" href="{% url 'update' task.id %}">&nbsp; &nbsp; &nbsp;Update &nbsp; &nbsp; &nbsp;</a>
+			<a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+			{% if task.complete == True %}
+			<strike>{{task}}</strike>
+			{% else %}
+			
+			{% endif %}
+		</div>
+	{% endfor %}
+	</div>
+</div>

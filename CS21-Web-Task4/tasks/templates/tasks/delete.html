@@ -1,0 +1,22 @@
+
+<body style=" background-color:gray;  text-align:center;">
+<br/>
+<br/>
+<br/>
+
+<p>Are you sure you want to delete "{{item}}"?</p>
+
+
+<br/>
+
+
+<form method="POST" action="">
+<input type="submit" name="Confirm">
+<a style="text-decoration:none;color:white" href="{% url 'list' %}" >Cancel</a>
+	{% csrf_token %}
+	
+
+
+</form>
+
+</body>
